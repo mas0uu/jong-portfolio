@@ -9,7 +9,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Jong Portfolio",
-  description: "Johnson Roque Jr's portfolio website built with Next.js 13 and Tailwind
+  description: "Johnson Roque Jr's portfolio website built with Next.js 13 and Tailwind"
 };
 
 export default function RootLayout({
