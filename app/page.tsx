@@ -195,7 +195,7 @@ export default function Home() {
                     label={windows[id].title}
                     icon={iconMap[id]}
                     color={iconColors[id]}
-                    onDoubleClick={() => openWindow(id)}
+                    onClick={() => openWindow(id)}
                   />
                 ))}
               </div>
@@ -207,7 +207,7 @@ export default function Home() {
                     label={windows[id].title}
                     icon={iconMap[id]}
                     color={iconColors[id]}
-                    onDoubleClick={() => openWindow(id)}
+                    onClick={() => openWindow(id)}
                   />
                 ))}
               </div>
