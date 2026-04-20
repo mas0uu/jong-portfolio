@@ -42,31 +42,31 @@ export default function AboutWindow() {
   };
 
   return (
-    <div className="space-y-4 pr-2">
-      <div className="space-y-1">
-        <p className="font-semibold text-slate-800">Johnson Roque Jr.</p>
-        <p className="text-sm text-slate-600">
-          Hi, I&apos;m Jong, a BS Computer Science student currently taking an internship at Doxsys Innovations.
+    <div className="space-y-5 pr-2">
+      <div className="space-y-2">
+        <p className="text-lg font-semibold text-slate-800">Johnson Roque Jr.</p>
+        <p className="text-base text-slate-600">
+          Hi, I&apos;m Jong, a BS Computer Science student, I just finished my internship at Doxsys Innovations.
         </p>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {aboutSections.map((section) => (
           <details
             key={section.title}
             open={openSection === section.title}
-            className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3"
+            className="rounded-lg border border-slate-200 bg-slate-50 px-5 py-4"
           >
             <summary
               onClick={(event) => {
                 event.preventDefault();
                 toggleSection(section.title);
               }}
-              className="cursor-pointer font-semibold text-slate-900"
+              className="cursor-pointer text-lg font-semibold text-slate-900"
             >
               {section.title}
             </summary>
-            <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-700">
+            <ul className="mt-3 list-disc space-y-2 pl-6 text-base text-slate-700">
               {section.items.map((item) => (
                 <li key={item}>{item}</li>
               ))}

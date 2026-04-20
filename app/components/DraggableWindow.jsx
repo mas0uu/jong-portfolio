@@ -60,19 +60,19 @@ export default function DraggableWindow({
     >
       <div
         onMouseDown={handleMouseDown}
-        className="flex cursor-move items-center justify-between border-b border-slate-300 bg-slate-100 px-3 py-2 select-none"
+        className="flex cursor-move items-center justify-between border-b border-slate-300 bg-slate-100 px-4 py-3 select-none"
       >
-        <p className="text-sm font-medium text-slate-700">{title}</p>
+        <p className="text-base font-medium text-slate-700">{title}</p>
 
         <button
           onClick={() => onClose(id)}
-          className="rounded p-1 text-slate-500 transition hover:bg-slate-200 hover:text-slate-800"
+          className="rounded p-1.5 text-slate-500 transition hover:bg-slate-200 hover:text-slate-800"
         >
-          <X className="h-4 w-4" />
+          <X className="h-5 w-5" />
         </button>
       </div>
 
-      <div className={`flex-1 bg-white p-5 ${scrollable ? "overflow-y-auto" : "overflow-hidden"}`}>
+      <div className={`flex-1 bg-white p-6 text-base leading-relaxed ${scrollable ? "overflow-y-auto" : "overflow-hidden"}`}>
         {children}
       </div>
     </div>

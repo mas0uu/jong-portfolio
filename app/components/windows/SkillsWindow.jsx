@@ -27,18 +27,18 @@ const skillGroups = [
 
 export default function SkillsWindow() {
   return (
-    <div className="space-y-3 pr-2">
+    <div className="space-y-4 pr-2">
       {skillGroups.map((group) => (
         <div
           key={group.title}
-          className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3"
+          className="rounded-lg border border-slate-200 bg-slate-50 px-5 py-4"
         >
-          <p className="text-sm font-semibold text-slate-900">{group.title}</p>
-          <div className="mt-2 flex flex-wrap gap-2">
+          <p className="text-lg font-semibold text-slate-900">{group.title}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
             {group.items.map((item) => (
               <span
                 key={item}
-                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-700"
+                className="rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm text-slate-700"
               >
                 {item}
               </span>

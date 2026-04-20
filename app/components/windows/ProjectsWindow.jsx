@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 import useSound from "use-sound";
 
 const projects = [
@@ -31,8 +31,28 @@ const projects = [
     technologies: ["laravel", "React", "Inertia.js", "MySQL"],
     repository: "https://github.com/mas0uu/DTR-System",
     screenshots: ["/dtr-1.png", "/dtr-2.png"],
+  },
+  {
+    name: "Doxsys Website",
+    description:
+      "A website for Doxsys, a company that provides IT solutions. The website showcases their services and portfolio.",
+    note: "This was a project for my internship.",
+    technologies: ["React", "Antdesign", "Tailwind CSS"],
+    repository: "",
+    screenshots: ["/doxsys-1.png", "/doxsys-2.png"],
+  },
+  {
+    name: "Las Pinas Citizen App",
+    description:
+      "A mobile application for the city of Las Pinas to report issues and access services.",
+    note: "This was also a project for my internship, where I only worked on the frontend.",
+    technologies: ["React Native"],
+    repository: "",
+    screenshots: ["/laspinas-1.png", "/laspinas-2.png"],
   }
 ];
+
+const isExternalLink = (value) => value?.startsWith("http");
 
 export default function ProjectsWindow() {
   const [openProject, setOpenProject] = useState(null);
@@ -50,34 +70,34 @@ export default function ProjectsWindow() {
   };
 
   return (
-    <div className="space-y-3 pr-2">
+    <div className="space-y-4 pr-2">
       {projects.map((project) => (
         <details
           key={project.name}
           open={openProject === project.name}
-          className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3"
+          className="rounded-lg border border-slate-200 bg-slate-50 px-5 py-4"
         >
           <summary
             onClick={(event) => {
               event.preventDefault();
               toggleProject(project.name);
             }}
-            className="cursor-pointer font-semibold text-slate-900"
+            className="cursor-pointer text-lg font-semibold text-slate-900"
           >
             {project.name}
           </summary>
 
-          <div className="mt-3 space-y-3 text-sm text-slate-700">
+          <div className="mt-4 space-y-4 text-base text-slate-700">
             <p>{project.description}</p>
             <p>{project.note}</p>
 
             <div>
               <p className="font-medium text-slate-800">Technologies used</p>
-              <div className="mt-2 flex flex-wrap gap-2">
+              <div className="mt-3 flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-700"
+                    className="rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm text-slate-700"
                   >
                     {tech}
                   </span>
@@ -85,22 +105,26 @@ export default function ProjectsWindow() {
               </div>
             </div>
 
-            <div>
-              <p>{project.repository && (
+            {project.repository && (
+              <div>
+                {isExternalLink(project.repository) ? (
                 <a
                   href={project.repository}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-500 hover:underline"
                 >
-                  View Repository
+                  Github Repository
                 </a>
-              )}</p>
-            </div>
+                ) : (
+                  <p className="text-slate-500">{project.repository}</p>
+                )}
+              </div>
+            )}
 
             <div>
               <p className="font-medium text-slate-800">Screenshots</p>
-              <div className="mt-2 space-y-2">
+              <div className="mt-3 space-y-3">
                 {project.screenshots.map((screenshot) => (
                   <Image
                     key={screenshot}
