@@ -48,8 +48,16 @@ const projects = [
     note: "This was also a project for my internship, where I only worked on the frontend.",
     technologies: ["React Native"],
     repository: "",
-    screenshots: ["/laspinas-1.png", "/laspinas-2.png"],
-  }
+    screenshotLayout: "phone-grid",
+    screenshots: [
+      "/laspinas-1.png",
+      "/laspinas-2.png",
+      "/laspinas-3.png",
+      "/laspinas-4.png",
+      "/laspinas-5.png",
+      "/laspinas-6.png",
+    ],
+  },
 ];
 
 const isExternalLink = (value) => value?.startsWith("http");
@@ -71,75 +79,97 @@ export default function ProjectsWindow() {
 
   return (
     <div className="space-y-4 pr-2">
-      {projects.map((project) => (
-        <details
-          key={project.name}
-          open={openProject === project.name}
-          className="rounded-lg border border-slate-200 bg-slate-50 px-5 py-4"
-        >
-          <summary
-            onClick={(event) => {
-              event.preventDefault();
-              toggleProject(project.name);
-            }}
-            className="cursor-pointer text-lg font-semibold text-slate-900"
+      {projects.map((project) => {
+        const usesPhoneGrid = project.screenshotLayout === "phone-grid";
+
+        return (
+          <details
+            key={project.name}
+            open={openProject === project.name}
+            className="rounded-lg border border-slate-200 bg-slate-50 px-5 py-4"
           >
-            {project.name}
-          </summary>
+            <summary
+              onClick={(event) => {
+                event.preventDefault();
+                toggleProject(project.name);
+              }}
+              className="cursor-pointer text-lg font-semibold text-slate-900"
+            >
+              {project.name}
+            </summary>
 
-          <div className="mt-4 space-y-4 text-base text-slate-700">
-            <p>{project.description}</p>
-            <p>{project.note}</p>
+            <div className="mt-4 space-y-4 text-base text-slate-700">
+              <p>{project.description}</p>
+              <p>{project.note}</p>
 
-            <div>
-              <p className="font-medium text-slate-800">Technologies used</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm text-slate-700"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {project.repository && (
               <div>
-                {isExternalLink(project.repository) ? (
-                <a
-                  href={project.repository}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  Github Repository
-                </a>
-                ) : (
-                  <p className="text-slate-500">{project.repository}</p>
-                )}
+                <p className="font-medium text-slate-800">Technologies used</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm text-slate-700"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            )}
 
-            <div>
-              <p className="font-medium text-slate-800">Screenshots</p>
-              <div className="mt-3 space-y-3">
-                {project.screenshots.map((screenshot) => (
-                  <Image
-                    key={screenshot}
-                    src={screenshot}
-                    alt={`${project.name} screenshot`}
-                    width={900}
-                    height={520}
-                    className="h-auto w-full rounded-md border border-slate-200 bg-white object-cover"
-                  />
-                ))}
+              {project.repository && (
+                <div>
+                  {isExternalLink(project.repository) ? (
+                    <a
+                      href={project.repository}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Github Repository
+                    </a>
+                  ) : (
+                    <p className="text-slate-500">{project.repository}</p>
+                  )}
+                </div>
+              )}
+
+              <div>
+                <p className="font-medium text-slate-800">Screenshots</p>
+                <div
+                  className={
+                    usesPhoneGrid
+                      ? "mt-3 grid grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 xl:grid-cols-3"
+                      : "mt-3 space-y-3"
+                  }
+                >
+                  {project.screenshots.map((screenshot) => (
+                    <div
+                      key={screenshot}
+                      className={
+                        usesPhoneGrid
+                          ? "w-full max-w-[260px] rounded-[1.75rem] border border-slate-200 bg-white p-2 shadow-sm"
+                          : ""
+                      }
+                    >
+                      <Image
+                        src={screenshot}
+                        alt={`${project.name} screenshot`}
+                        width={900}
+                        height={520}
+                        className={
+                          usesPhoneGrid
+                            ? "h-auto w-full rounded-[1.25rem] border border-slate-200 bg-white object-cover"
+                            : "h-auto w-full rounded-md border border-slate-200 bg-white object-cover"
+                        }
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </details>
-      ))}
+          </details>
+        );
+      })}
     </div>
   );
 }
