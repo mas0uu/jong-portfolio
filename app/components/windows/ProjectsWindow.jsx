@@ -36,7 +36,7 @@ const projects = [
     name: "Doxsys Website",
     description:
       "A website for Doxsys, a company that provides IT solutions. The website showcases their services and portfolio.",
-    note: "This was a project for my internship.",
+    note: "I was responsible for adding and updating content on the website",
     technologies: ["React", "Antdesign", "Tailwind CSS"],
     repository: "",
     screenshots: ["/doxsys-1.png", "/doxsys-2.png"],
